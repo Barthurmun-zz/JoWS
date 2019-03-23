@@ -16,21 +16,9 @@ def topology():
     net = Mininet_wifi(controller=Controller, accessPoint=OVSKernelAP)
 
     info("*** Creating nodes\n")
-    
-    # One way of creating topology -> Restrict one without the controller.
-    
-    #sta1 = net.addStation('sta1', mac='00:00:00:00:00:01',
-    #                        ip='192.168.0.1/24', position='20,8,0')
-    #sta2 = net.addStation('sta2', mac='00:00:00:00:00:02',
-    #                        ip='192.168.0.2/24', position='20,7,8')
-    #ap1 = net.addStation('ap1', mac='02:00:00:00:01:00',
-    #                        ip='192.168.0.10/24', position='20,10,5')
-
-    #ap1.setMasterMode(intf='ap1-wlan0', ssid='ap1-ssid', channel='36', mode='a')
-    
+     
     internet = net.addHost('internet', ip='10.0.0.1/24', position='30,30,30')
     
-    # Other way -> Simply one
     sta1 = net.addStation('sta1', mac='00:00:00:00:00:01',position='20,8,0') #YouTube
     sta2 = net.addStation('sta2', mac='00:00:00:00:00:02',position='20,7,8') #YouTube
     
@@ -38,7 +26,7 @@ def topology():
         
     sta3 = net.addStation('sta3', mac='00:00:00:00:00:03', position='30,10,5') #BE DL traffic
     sta4 = net.addStation('sta4', mac='00:00:00:00:00:04', position='30,15,10') #VoIP between sta4 and sta5
-    sta5 = net.addStation('sta5', mac='00:00:00:00:00:05',  position='30,17,8') #VoIP between sta4 and sta5
+    #sta5 = net.addStation('sta5', mac='00:00:00:00:00:05',  position='30,17,8') #VoIP between sta4 and sta5
     
     c0 = net.addController('c0', controller=Controller, ip='127.0.0.1', port=6633)
     
@@ -56,12 +44,7 @@ def topology():
     net.addLink(sta2, ap1)
     net.addLink(sta3, ap1)
     net.addLink(sta4, ap1)
-    net.addLink(sta5, ap1)
-
-    # If we would decide for connection oriented topology to the internet.
-    #net.addLink(sta3, internet)
-    #net.addLink(sta4, internet)
-    #net.addLink(sta5, internet)
+    #net.addLink(sta5, ap1)
 
     info("*** Starting network\n")
     net.build()
@@ -70,16 +53,28 @@ def topology():
     
     net.pingFull()
     
-    # To the first way of creating SOHO network.
-    #ap1.setIP('10.0.0.2/24', intf='ap1-eth2')
-    #ap1.setIP('192.168.0.101/24', intf='ap1-eth2')
+    #Pewnie trzeba dodac tutaj odpowiednie Wait'y
+
+    ap1.sendCmd("tc qdisc add dev ap1-eth2 root handle 1: htb default 3")
+    ap1.sendCmd("tc class add dev ap1-eth2 parent 1: classid 1:1 htb rate 2mbps ceil 2mbps")
+    ap1.sendCmd("tc class add dev ap1-eth2 parent 1:1 classid 1:10 htb rate 700kbps ceil 2mbps") #Sta1 Video
+    ap1.sendCmd("tc class add dev ap1-eth2 parent 1:1 classid 1:11 htb rate 700kbps ceil 2mbps") #Sta2 Video
+    ap1.sendCmd("tc class add dev ap1-eth2 parent 1:1 classid 1:12 htb rate 500kbps ceil 2mbps") #Sta3 BE
+    ap1.sendCmd("tc class add dev ap1-eth2 parent 1:1 classid 1:13 htb rate 100kbps ceil 2mbps") #Sta4 VoIP
     
+    ap.sendCmd("tc filter add dev ap1-eth2 protocol ip parent 1:0 prio 1 u32 match ip src 10.0.0.2 match ip dport 50 0xffff flowid 1:10")
+    ap.sendCmd("tc filter add dev ap1-eth2 protocol ip parent 1:0 prio 1 u32 match ip src 10.0.0.3 match ip dport 60 0xffff flowid 1:11")
+    ap.sendCmd("tc filter add dev ap1-eth2 protocol ip parent 1:0 prio 1 u32 match ip src 10.0.0.4 match ip dport 80 0xffff flowid 1:12")
+    ap.sendCmd("tc filter add dev ap1-eth2 protocol ip parent 1:0 prio 1 u32 match ip src 10.0.0.5 match ip dport 25 0xffff flowid 1:13")
     
-    #internet.setIP('10.0.0.1/24', intf='internet-eth0')
-    #internet.setIP('10.0.0.103/24', intf='internet-eth1')
-    
-    #ap1.sendCmd( "iperf -s -i 1 -u")
-    #sta1.cmdPrint( "iperf -c 192.168.0.10 -u -b 40M" )     
+    internet.sendCmd("iperf -s -u -p 50 -i 1")
+    internet.sendCmd("iperf -s -u -p 60 -i 1")
+    internet.sendCmd("iperf -s -u -p 80 -i 1")
+    internet.sendCmd("iperf -s -u -p 25 -i 1")
+
+    #Miejsce aby dodac algorytmy kolejkowania odpowiednie:
+    #Pfifo/FIFO/SFQ
+
 
     info("*** Running CLI\n")
     CLI_wifi(net)
