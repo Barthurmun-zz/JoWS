@@ -9,7 +9,7 @@ from mininet.log import setLogLevel, info
 from mn_wifi.node import OVSKernelAP
 from mn_wifi.cli import CLI_wifi
 from mn_wifi.net import Mininet_wifi
-
+from time import sleep
 
 def topology():
     'Create a network.'
@@ -54,23 +54,31 @@ def topology():
     net.pingFull()
     
     #Pewnie trzeba dodac tutaj odpowiednie Wait'y
+    #sleep(5)
+    #ap1.sendCmd("tc qdisc add dev ap1-eth2 root handle 1: htb default 13")
+    #ap1.sendCmd("tc class add dev ap1-eth2 parent 1: classid 1:1 htb rate 2mbps ceil 2mbps")
+    #ap1.sendCmd("tc class add dev ap1-eth2 parent 1:1 classid 1:10 htb rate 700kbps ceil 2mbps") #Sta1 Video
+    #ap1.sendCmd("tc class add dev ap1-eth2 parent 1:1 classid 1:11 htb rate 700kbps ceil 2mbps") #Sta2 Video
+    #ap1.sendCmd("tc class add dev ap1-eth2 parent 1:1 classid 1:12 htb rate 500kbps ceil 2mbps") #Sta3 BE
+    #ap1.sendCmd("tc class add dev ap1-eth2 parent 1:1 classid 1:13 htb rate 100kbps ceil 2mbps") #Sta4 VoIP
+    
+    #sleep(0.5)
+    #ap1.sendCmd("tc filter add dev ap1-eth2 protocol ip parent 1:0 prio 1 u32 match ip src 10.0.0.2 match ip dport 50 0xffff flowid 1:10")
+    #ap1.sendCmd("tc filter add dev ap1-eth2 protocol ip parent 1:0 prio 1 u32 match ip src 10.0.0.3 match ip dport 60 0xffff flowid 1:11")
+    #ap1.sendCmd("tc filter add dev ap1-eth2 protocol ip parent 1:0 prio 1 u32 match ip src 10.0.0.4 match ip dport 80 0xffff flowid 1:12")
+    #ap1.sendCmd("tc filter add dev ap1-eth2 protocol ip parent 1:0 prio 1 u32 match ip src 10.0.0.5 match ip dport 25 0xffff flowid 1:13")
 
-    ap1.sendCmd("tc qdisc add dev ap1-eth2 root handle 1: htb default 3")
-    ap1.sendCmd("tc class add dev ap1-eth2 parent 1: classid 1:1 htb rate 2mbps ceil 2mbps")
-    ap1.sendCmd("tc class add dev ap1-eth2 parent 1:1 classid 1:10 htb rate 700kbps ceil 2mbps") #Sta1 Video
-    ap1.sendCmd("tc class add dev ap1-eth2 parent 1:1 classid 1:11 htb rate 700kbps ceil 2mbps") #Sta2 Video
-    ap1.sendCmd("tc class add dev ap1-eth2 parent 1:1 classid 1:12 htb rate 500kbps ceil 2mbps") #Sta3 BE
-    ap1.sendCmd("tc class add dev ap1-eth2 parent 1:1 classid 1:13 htb rate 100kbps ceil 2mbps") #Sta4 VoIP
-    
-    ap.sendCmd("tc filter add dev ap1-eth2 protocol ip parent 1:0 prio 1 u32 match ip src 10.0.0.2 match ip dport 50 0xffff flowid 1:10")
-    ap.sendCmd("tc filter add dev ap1-eth2 protocol ip parent 1:0 prio 1 u32 match ip src 10.0.0.3 match ip dport 60 0xffff flowid 1:11")
-    ap.sendCmd("tc filter add dev ap1-eth2 protocol ip parent 1:0 prio 1 u32 match ip src 10.0.0.4 match ip dport 80 0xffff flowid 1:12")
-    ap.sendCmd("tc filter add dev ap1-eth2 protocol ip parent 1:0 prio 1 u32 match ip src 10.0.0.5 match ip dport 25 0xffff flowid 1:13")
-    
-    internet.sendCmd("iperf -s -u -p 50 -i 1")
-    internet.sendCmd("iperf -s -u -p 60 -i 1")
-    internet.sendCmd("iperf -s -u -p 80 -i 1")
-    internet.sendCmd("iperf -s -u -p 25 -i 1")
+    #sleep(0.5)
+    #ap1.sendCmd("tc qdisc add dev ap1-eth2 parent 1:10 handle 35: pfifo limit 5")  
+    #ap1.sendCmd("tc qdisc add dev ap1-eth2 parent 1:11 handle 35: pfifo limit 5")
+    #ap1.sendCmd("tc qdisc add dev ap1-eth2 parent 1:12 handle 25: pfifo limit 5")
+    #ap1.sendCmd("tc qdisc add dev ap1-eth2 parent 1:10 handle 5: pfifo limit 5")
+
+    #sleep(0.5)
+    #internet.sendCmd("iperf -s -u -p 50 -i 1")
+    #internet.sendCmd("iperf -s -u -p 60 -i 1")
+    #internet.sendCmd("iperf -s -u -p 80 -i 1")
+    #internet.sendCmd("iperf -s -u -p 25 -i 1")
 
     #Miejsce aby dodac algorytmy kolejkowania odpowiednie:
     #Pfifo/FIFO/SFQ
