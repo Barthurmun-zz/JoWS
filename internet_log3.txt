@@ -1,19 +1,17 @@
 ------------------------------------------------------------
-Server listening on UDP port 80
-Receiving 1470 byte datagrams
-UDP buffer size:  208 KByte (default)
+Server listening on TCP port 80
+TCP window size: 85.3 KByte (default)
 ------------------------------------------------------------
-[  3] local 10.0.0.1 port 80 connected with 10.0.0.4 port 37211
-[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams
-[  3]  0.0- 1.0 sec   134 KBytes  1.09 Mbits/sec   2.135 ms    0/   93 (0%)
-[  3] 0.00-1.00 sec  4 datagrams received out-of-order
-[  3]  1.0- 2.0 sec   129 KBytes  1.06 Mbits/sec   2.694 ms    0/   90 (0%)
-[  3]  2.0- 3.0 sec   128 KBytes  1.05 Mbits/sec   1.807 ms    0/   89 (0%)
-[  3]  3.0- 4.0 sec   128 KBytes  1.05 Mbits/sec   1.324 ms    0/   89 (0%)
-[  3]  4.0- 5.0 sec   128 KBytes  1.05 Mbits/sec   1.537 ms    0/   89 (0%)
-[  3]  5.0- 6.0 sec   128 KBytes  1.05 Mbits/sec   0.573 ms    0/   89 (0%)
-[  3]  6.0- 7.0 sec   129 KBytes  1.06 Mbits/sec   0.524 ms    0/   90 (0%)
-[  3]  7.0- 8.0 sec   128 KBytes  1.05 Mbits/sec   1.193 ms    0/   89 (0%)
-[  3]  8.0- 9.0 sec   128 KBytes  1.05 Mbits/sec   0.442 ms    0/   89 (0%)
-[  3]  0.0-10.0 sec  1.25 MBytes  1.05 Mbits/sec   0.984 ms    0/  893 (0%)
-[  3] 0.00-9.97 sec  4 datagrams received out-of-order
+[  4] local 10.0.0.1 port 80 connected with 10.0.0.4 port 49616
+[ ID] Interval       Transfer     Bandwidth
+[  4]  0.0- 1.0 sec   230 KBytes  1.89 Mbits/sec
+[  4]  1.0- 2.0 sec   233 KBytes  1.91 Mbits/sec
+[  4]  2.0- 3.0 sec   239 KBytes  1.96 Mbits/sec
+[  4]  3.0- 4.0 sec   239 KBytes  1.96 Mbits/sec
+[  4]  4.0- 5.0 sec   216 KBytes  1.77 Mbits/sec
+[  4]  5.0- 6.0 sec   240 KBytes  1.97 Mbits/sec
+[  4]  6.0- 7.0 sec   229 KBytes  1.88 Mbits/sec
+[  4]  7.0- 8.0 sec   212 KBytes  1.74 Mbits/sec
+[  4]  8.0- 9.0 sec   223 KBytes  1.83 Mbits/sec
+[  4]  9.0-10.0 sec   233 KBytes  1.91 Mbits/sec
+[  4]  0.0-10.6 sec  2.38 MBytes  1.88 Mbits/sec

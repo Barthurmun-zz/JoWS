@@ -81,18 +81,18 @@ def topology():
     sleep(0.5)
     internet.cmd("iperf -s -u -p 50 -i 1 > internet_log1.txt &")
     internet.cmd("iperf -s -u -p 60 -i 1 > internet_log2.txt &")
-    internet.cmd("iperf -s -u -p 80 -i 1 > internet_log3.txt &")
+    internet.cmd("iperf -s -p 80 -i 1 > internet_log3.txt &")
     internet.cmd("iperf -s -u -p 25 -i 1 > internet_log4.txt &")
 
-    internet.cmd("tcpdump -i internet-eth0 -t 60 -w jows-1.pcap")
+    internet.cmd("tcpdump -i internet-eth0 -t 30 -w jows-1.pcap")
 
-    sta1.cmd("iperf -c 10.0.0.1 -p 50 -t 20 -u")
+    sta1.cmd("iperf -c 10.0.0.1 -p 50 -t 20 -u -b 2.5M")
     sleep(5)
-    sta2.cmd("iperf -c 10.0.0.1 -p 60 -t 15 -u")
+    sta2.cmd("iperf -c 10.0.0.1 -p 60 -t 15 -u -b 2.5M")
     sleep(5)
-    sta3.cmd("iperf -c 10.0.0.1 -p 80 -t 10 -u")
+    sta3.cmd("iperf -c 10.0.0.1 -p 80 -t 10")
     sleep(5)
-    sta4.cmd("iperf -c 10.0.0.1 -p 25 -t 5 -u")
+    sta4.cmd("iperf -c 10.0.0.1 -p 25 -t 5 -u -b 2.5M")
     sleep(5)
 
 
