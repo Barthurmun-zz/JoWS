@@ -54,36 +54,46 @@ def topology():
     net.pingFull()
     
     #Pewnie trzeba dodac tutaj odpowiednie Wait'y
-    #sleep(5)
-    #ap1.sendCmd("tc qdisc add dev ap1-eth2 root handle 1: htb default 13")
-    #ap1.sendCmd("tc class add dev ap1-eth2 parent 1: classid 1:1 htb rate 2mbps ceil 2mbps")
-    #ap1.sendCmd("tc class add dev ap1-eth2 parent 1:1 classid 1:10 htb rate 700kbps ceil 2mbps") #Sta1 Video
-    #ap1.sendCmd("tc class add dev ap1-eth2 parent 1:1 classid 1:11 htb rate 700kbps ceil 2mbps") #Sta2 Video
-    #ap1.sendCmd("tc class add dev ap1-eth2 parent 1:1 classid 1:12 htb rate 500kbps ceil 2mbps") #Sta3 BE
-    #ap1.sendCmd("tc class add dev ap1-eth2 parent 1:1 classid 1:13 htb rate 100kbps ceil 2mbps") #Sta4 VoIP
+    sleep(5)
+    ap1.cmd("tc qdisc add dev ap1-eth2 root handle 1: htb default 13")
+    ap1.cmd("tc class add dev ap1-eth2 parent 1: classid 1:1 htb rate 250kbps ceil 250kbps")
+    ap1.cmd("tc class add dev ap1-eth2 parent 1:1 classid 1:10 htb rate 90kbps ceil 250kbps") #Sta1 Video
+    ap1.cmd("tc class add dev ap1-eth2 parent 1:1 classid 1:11 htb rate 90kbps ceil 250kbps") #Sta2 Video
+    ap1.cmd("tc class add dev ap1-eth2 parent 1:1 classid 1:12 htb rate 1kbps ceil 250kbps") #Sta3 BE
+    ap1.cmd("tc class add dev ap1-eth2 parent 1:1 classid 1:13 htb rate 69kbps ceil 250kbps") #Sta4 VoIP
     
-    #sleep(0.5)
-    #ap1.sendCmd("tc filter add dev ap1-eth2 protocol ip parent 1:0 prio 1 u32 match ip src 10.0.0.2 match ip dport 50 0xffff flowid 1:10")
-    #ap1.sendCmd("tc filter add dev ap1-eth2 protocol ip parent 1:0 prio 1 u32 match ip src 10.0.0.3 match ip dport 60 0xffff flowid 1:11")
-    #ap1.sendCmd("tc filter add dev ap1-eth2 protocol ip parent 1:0 prio 2 u32 match ip src 10.0.0.4 match ip dport 80 0xffff flowid 1:12")
-    #ap1.sendCmd("tc filter add dev ap1-eth2 protocol ip parent 1:0 prio 3 u32 match ip src 10.0.0.5 match ip dport 25 0xffff flowid 1:13")
+    sleep(0.5)
+    ap1.cmd("tc filter add dev ap1-eth2 protocol ip parent 1:0 prio 1 u32 match ip src 10.0.0.2 match ip dport 50 0xffff flowid 1:10")
+    ap1.cmd("tc filter add dev ap1-eth2 protocol ip parent 1:0 prio 1 u32 match ip src 10.0.0.3 match ip dport 60 0xffff flowid 1:11")
+    ap1.cmd("tc filter add dev ap1-eth2 protocol ip parent 1:0 prio 2 u32 match ip src 10.0.0.4 match ip dport 80 0xffff flowid 1:12")
+    ap1.cmd("tc filter add dev ap1-eth2 protocol ip parent 1:0 prio 3 u32 match ip src 10.0.0.5 match ip dport 25 0xffff flowid 1:13")
 
     #Miejsce aby dodac algorytmy kolejkowania odpowiednie:
     #Pfifo/FIFO/SFQ
 
-    #sleep(0.5)
-    #ap1.sendCmd("tc qdisc add dev ap1-eth2 parent 1:10 handle 10: pfifo limit 5")  
-    #ap1.sendCmd("tc qdisc add dev ap1-eth2 parent 1:11 handle 20: pfifo limit 5")
-    #ap1.sendCmd("tc qdisc add dev ap1-eth2 parent 1:12 handle 30: pfifo limit 5")
-    #ap1.sendCmd("tc qdisc add dev ap1-eth2 parent 1:13 handle 40: sfq perturb 10")
+    sleep(0.5)
+    ap1.cmd("tc qdisc add dev ap1-eth2 parent 1:10 handle 10: pfifo limit 5")  
+    ap1.cmd("tc qdisc add dev ap1-eth2 parent 1:11 handle 20: pfifo limit 5")
+    ap1.cmd("tc qdisc add dev ap1-eth2 parent 1:12 handle 30: pfifo limit 5")
+    ap1.cmd("tc qdisc add dev ap1-eth2 parent 1:13 handle 40: sfq perturb 10")
 
-    #sleep(0.5)
-    #internet.sendCmd("iperf -s -u -p 50 -i 1")
-    #internet.sendCmd("iperf -s -u -p 60 -i 1")
-    #internet.sendCmd("iperf -s -u -p 80 -i 1")
-    #internet.sendCmd("iperf -s -u -p 25 -i 1")
-    #blabla 
-    
+      #Uruchamianie iperfa 
+    sleep(0.5)
+    internet.cmd("iperf -s -u -p 50 -i 1 > internet_log1.txt &")
+    internet.cmd("iperf -s -u -p 60 -i 1 > internet_log2.txt &")
+    internet.cmd("iperf -s -u -p 80 -i 1 > internet_log3.txt &")
+    internet.cmd("iperf -s -u -p 25 -i 1 > internet_log4.txt &")
+
+    internet.cmd("tcpdump -i internet-eth0 -t 60 -w jows-1.pcap")
+
+    sta1.cmd("iperf -c 10.0.0.1 -p 50 -t 20 -u")
+    sleep(5)
+    sta2.cmd("iperf -c 10.0.0.1 -p 60 -t 15 -u")
+    sleep(5)
+    sta3.cmd("iperf -c 10.0.0.1 -p 80 -t 10 -u")
+    sleep(5)
+    sta4.cmd("iperf -c 10.0.0.1 -p 25 -t 5 -u")
+    sleep(5)
 
 
     info("*** Running CLI\n")

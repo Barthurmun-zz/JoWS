@@ -1,0 +1,14 @@
+------------------------------------------------------------
+Server listening on UDP port 25
+Receiving 1470 byte datagrams
+UDP buffer size:  208 KByte (default)
+------------------------------------------------------------
+[  3] local 10.0.0.1 port 25 connected with 10.0.0.5 port 41939
+[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams
+[  3]  0.0- 1.0 sec   132 KBytes  1.08 Mbits/sec   0.660 ms    0/   92 (0%)
+[  3] 0.00-1.00 sec  2 datagrams received out-of-order
+[  3]  1.0- 2.0 sec   128 KBytes  1.05 Mbits/sec   0.556 ms    0/   89 (0%)
+[  3]  2.0- 3.0 sec   128 KBytes  1.05 Mbits/sec   0.526 ms    0/   89 (0%)
+[  3]  3.0- 4.0 sec   128 KBytes  1.05 Mbits/sec   0.767 ms    0/   89 (0%)
+[  3]  0.0- 5.0 sec   642 KBytes  1.05 Mbits/sec   1.119 ms    0/  447 (0%)
+[  3] 0.00-4.99 sec  2 datagrams received out-of-order
