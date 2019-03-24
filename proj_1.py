@@ -86,13 +86,13 @@ def topology():
 
     internet.cmd("tcpdump -i internet-eth0 -w jows-1.pcap &")
 
-    sta1.cmd("iperf -c 10.0.0.1 -p 50 -t 20 -u -b 2.5M")
+    sta1.cmd("iperf -c 10.0.0.1 -p 50 -t 20 -u -b 2.5M &")
     sleep(5)
-    sta2.cmd("iperf -c 10.0.0.1 -p 60 -t 15 -u -b 2.5M")
+    sta2.cmd("iperf -c 10.0.0.1 -p 60 -t 15 -u -b 2.5M &")
     sleep(5)
-    sta3.cmd("iperf -c 10.0.0.1 -p 80 -t 10")
+    sta3.cmd("iperf -c 10.0.0.1 -p 80 -t 10 &")
     sleep(5)
-    sta4.cmd("iperf -c 10.0.0.1 -p 25 -t 5 -u -b 2.5M -l 160") #dlugosc pakietu 160 Bajtow
+    sta4.cmd("iperf -c 10.0.0.1 -p 25 -t 5 -u -b 2.5M -l 160 &") #dlugosc pakietu 160 Bajtow
     sleep(5)
     
     internet.cmd("sudo killall tcpdump")
