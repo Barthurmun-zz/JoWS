@@ -65,14 +65,17 @@ def topology():
     #sleep(0.5)
     #ap1.sendCmd("tc filter add dev ap1-eth2 protocol ip parent 1:0 prio 1 u32 match ip src 10.0.0.2 match ip dport 50 0xffff flowid 1:10")
     #ap1.sendCmd("tc filter add dev ap1-eth2 protocol ip parent 1:0 prio 1 u32 match ip src 10.0.0.3 match ip dport 60 0xffff flowid 1:11")
-    #ap1.sendCmd("tc filter add dev ap1-eth2 protocol ip parent 1:0 prio 1 u32 match ip src 10.0.0.4 match ip dport 80 0xffff flowid 1:12")
-    #ap1.sendCmd("tc filter add dev ap1-eth2 protocol ip parent 1:0 prio 1 u32 match ip src 10.0.0.5 match ip dport 25 0xffff flowid 1:13")
+    #ap1.sendCmd("tc filter add dev ap1-eth2 protocol ip parent 1:0 prio 2 u32 match ip src 10.0.0.4 match ip dport 80 0xffff flowid 1:12")
+    #ap1.sendCmd("tc filter add dev ap1-eth2 protocol ip parent 1:0 prio 3 u32 match ip src 10.0.0.5 match ip dport 25 0xffff flowid 1:13")
+
+    #Miejsce aby dodac algorytmy kolejkowania odpowiednie:
+    #Pfifo/FIFO/SFQ
 
     #sleep(0.5)
-    #ap1.sendCmd("tc qdisc add dev ap1-eth2 parent 1:10 handle 35: pfifo limit 5")  
-    #ap1.sendCmd("tc qdisc add dev ap1-eth2 parent 1:11 handle 35: pfifo limit 5")
-    #ap1.sendCmd("tc qdisc add dev ap1-eth2 parent 1:12 handle 25: pfifo limit 5")
-    #ap1.sendCmd("tc qdisc add dev ap1-eth2 parent 1:10 handle 5: pfifo limit 5")
+    #ap1.sendCmd("tc qdisc add dev ap1-eth2 parent 1:10 handle 10: pfifo limit 5")  
+    #ap1.sendCmd("tc qdisc add dev ap1-eth2 parent 1:11 handle 20: pfifo limit 5")
+    #ap1.sendCmd("tc qdisc add dev ap1-eth2 parent 1:12 handle 30: pfifo limit 5")
+    #ap1.sendCmd("tc qdisc add dev ap1-eth2 parent 1:13 handle 40: sfq perturb 10")
 
     #sleep(0.5)
     #internet.sendCmd("iperf -s -u -p 50 -i 1")
@@ -80,8 +83,7 @@ def topology():
     #internet.sendCmd("iperf -s -u -p 80 -i 1")
     #internet.sendCmd("iperf -s -u -p 25 -i 1")
 
-    #Miejsce aby dodac algorytmy kolejkowania odpowiednie:
-    #Pfifo/FIFO/SFQ
+    
 
 
     info("*** Running CLI\n")
@@ -93,5 +95,4 @@ def topology():
 
 if __name__ == '__main__':
     setLogLevel('info')
-    isVirtual = True if '-v' in sys.argv else False
     topology()
