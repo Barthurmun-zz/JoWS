@@ -56,13 +56,18 @@ def topology():
     
     #Pewnie trzeba dodac tutaj odpowiednie Wait'y
     sleep(5)
-    ap1.cmd("tc qdisc add dev ap1-eth2 root handle 1: htb default 90")
-    ap1.cmd("tc class add dev ap1-eth2 parent 1: classid 1:1 htb rate 250kbps ceil 250kbps")
-    ap1.cmd("tc class add dev ap1-eth2 parent 1:1 classid 1:10 htb rate 90kbps ceil 250kbps") #Sta1 Video
+    ap1.cmd("tc qdisc add dev ap1-eth2 root handle 1: htb default 20")
+    ap1.cmd("tc class add dev ap1-eth2 parent 1: classid 1:1 htb rate 125kbps ceil 125kbps")
+    ap1.cmd("tc class add dev ap1-eth2 parent 1:1 classid 1:10 htb rate 90kbps ceil 125kbps") #Sta1 Video
     #Zakomentowac ponisza linijke gry robimy DL video:
-    ap1.cmd("tc class add dev ap1-eth2 parent 1:1 classid 1:11 htb rate 124kbps ceil 250kbps") #Sta2 Video
-    ap1.cmd("tc class add dev ap1-eth2 parent 1:1 classid 1:12 htb rate 1kbps ceil 250kbps") #Sta3 BE
-    ap1.cmd("tc class add dev ap1-eth2 parent 1:1 classid 1:13 htb rate 35kbps ceil 250kbps") #Sta4 VoIP
+    #ap1.cmd("tc class add dev ap1-eth2 parent 1:1 classid 1:11 htb rate 124kbps ceil 250kbps") #Sta2 Video
+    ap1.cmd("tc class add dev ap1-eth2 parent 1:1 classid 1:12 htb rate 1kbps ceil 125kbps") #Sta3 BE
+    ap1.cmd("tc class add dev ap1-eth2 parent 1:1 classid 1:13 htb rate 34kbps ceil 125kbps") #Sta4 VoIP
+    
+    #Konfiguracja transmisji w kierunku DL (nie potrzeba dodawania algorytmu kolejkowania pfifo/sfq jako ze jest to jedyny ruch w tym kierunku)
+    internet.cmd("tc qdisc add dev internet-eth0 root handle 1: htb default 180")
+    internet.cmd("tc class add dev internet-eth0 parent 1: classid 1:1 htb rate 250kbps ceil 250kbps")
+    internet.cmd("tc class add dev internet-eth0 parent 1:1 classid 1:11 htb rate 180kbps ceil 250kbps") #Sta2 Video
     
 
     #Konfiguracja portu ingressowego dla VLC ( sta2 obsluguje vlc)
@@ -73,45 +78,45 @@ def topology():
     #ap1.cmd("tc qdisc add dev ifb0 root handle 1: htb default 10")
     #ap1.cmd("tc qdisc add dev ap1-eth2 ingress handle ffff:")
     #ap1.cmd("tc class add dev ifb0 parent 1: classid 1:1 htb rate 250kbps ceil 250kbps")
-    #ap1.cmd("tc class add dev ifb0 parent 1:1 classid 1:11 htb rate 90kbps ceil 250kbps")
-    #ap1.cmd("tc filter add dev ap1-eth2 protocol ip parent 1:0 prio 1 u32 match ip src 10.0.0.1 match ip dport 5005 0xffff flowid 1:11")
+    #ap1.cmd("tc class add dev ifb0 parent 1:1 classid 1:12 htb rate 1kbps ceil 250kbps")
+    #ap1.cmd("tc filter add dev ap1-eth2 protocol ip parent 1:0 prio 1 u32 match ip src 10.0.0.1 match ip dport 80 0xffff flowid 1:12")
  
     #ap1.cmd("tc filter add dev ap1-eth2 parent ffff: protocol ip u32 match u32 0 0 action connmark action mirred egress redirect dev ifb0 flowid ffff:1")
     
     sleep(0.5)
     ap1.cmd("tc filter add dev ap1-eth2 protocol ip parent 1:0 prio 1 u32 match ip src 10.0.0.2 match ip dport 50 0xffff flowid 1:10")
-    ap1.cmd("tc filter add dev ap1-eth2 protocol ip parent 1:0 prio 1 u32 match ip src 10.0.0.3 match ip dport 5005 0xffff flowid 1:11")
+    #ap1.cmd("tc filter add dev ap1-eth2 protocol ip parent 1:0 prio 1 u32 match ip src 10.0.0.3 match ip dport 5005 0xffff flowid 1:11")
     ap1.cmd("tc filter add dev ap1-eth2 protocol ip parent 1:0 prio 2 u32 match ip src 10.0.0.4 match ip dport 80 0xffff flowid 1:12")
     ap1.cmd("tc filter add dev ap1-eth2 protocol ip parent 1:0 prio 3 u32 match ip src 10.0.0.5 match ip dport 25 0xffff flowid 1:13")
+
+    internet.cmd("tc filter add dev internet-eth0 protocol ip parent 1:0 prio 1 u32 match ip src 10.0.0.1 match ip dport 5005 0xffff flowid 1:11")
+    
 
     #Miejsce aby dodac algorytmy kolejkowania odpowiednie:
     #Pfifo/FIFO/SFQ
 
     sleep(0.5)
     ap1.cmd("tc qdisc add dev ap1-eth2 parent 1:10 handle 20: pfifo limit 5")  
-    ap1.cmd("tc qdisc add dev ap1-eth2 parent 1:11 handle 10: pfifo limit 15")
+    #ap1.cmd("tc qdisc add dev ap1-eth2 parent 1:11 handle 10: pfifo limit 5")
     #Odkomentowac gdy robimy DL i zakomentowac linijke powyzej
     #ap1.cmd("tc qdisc add dev ifb0 parent 1:11 handle 20: pfifo limit 5")
-    ap1.cmd("tc qdisc add dev ap1-eth2 parent 1:12 handle 30: pfifo limit 5")
-    ap1.cmd("tc qdisc add dev ap1-eth2 parent 1:13 handle 40: sfq perturb 10")
+    ap1.cmd("tc qdisc add dev ap1-eth2 parent 1:13 handle 30: pfifo limit 5")
+    ap1.cmd("tc qdisc add dev ap1-eth2 parent 1:12 handle 40: sfq perturb 10")
 
     #Uruchamianie iperfa 
     sleep(0.5)
-    internet.cmd("iperf -s -u -p 50 -i 1 > internet_log1.txt &")
+    internet.cmd("iperf -s -u -p 50 -i 1 > internet_log1_2.txt &")
     #internet.cmd("iperf -s -u -p 5005 -i 1 > internet_log2.txt &")
-    internet.cmd("iperf -s -p 80 -i 1 > internet_log3.txt &")
-    internet.cmd("iperf -s -u -p 25 -i 1 > internet_log4.txt &")
+    internet.cmd("iperf -s -p 80 -i 1 > internet_log3_2.txt &")
+    internet.cmd("iperf -s -u -p 25 -i 1 > internet_log4_2.txt &")
 
-    internet.cmd("tcpdump -i internet-eth0 -w jows-1.pcap &")
+    internet.cmd("tcpdump -i internet-eth0 -w jows-dl.pcap &")
 
-    sta1.cmd("iperf -c 10.0.0.1 -p 50 -t 100 -u -b 2.5M &")
+    sta1.cmd("iperf -c 10.0.0.1 -p 50 -t 100 -u -b 1.5M &")
     sleep(5)
-    #sta2.cmd("iperf -c 10.0.0.1 -p 60 -t 55 -u -b 2.5M &")
-    #sleep(5)
     sta3.cmd("iperf -c 10.0.0.1 -p 80 -t 140 &")
     sleep(5)
-    sta4.cmd("iperf -c 10.0.0.1 -p 25 -t 800 -u -b 2.5M -l 160 &") #dlugosc pakietu 160 Bajtow
-    #sleep(5)
+    sta4.cmd("iperf -c 10.0.0.1 -p 25 -t 120 -u -b 1.5M -l 160 &") #dlugosc pakietu 160 Bajtow
     sta2.cmd("vlc-wrapper &")
     sleep(5)
     internet.cmd("vlc-wrapper &")
