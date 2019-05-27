@@ -31,7 +31,7 @@ def main(argv):
 
     phy.SetChannel (channel.Create ())
 
-    payloadSize = 1472 #bytes
+    payloadSize = 1400 #bytes
     #ns.core.Config.SetDefault ("ns3::TcpSocket::SegmentSize", ns.core.UintegerValue (payloadSize))
 
     wifiStaNode = ns.network.NodeContainer ()
@@ -98,8 +98,14 @@ def main(argv):
     temp = float((expected_val*1000000)/(payloadSize*8))
     inter =float(1/temp)
     inter = format(inter,'f')
+    
+    tid=5
 
-    myClient = ns.applications.UdpClientHelper (apNodeInterface.GetAddress (0), 9)
+    socketAddress = ns.network.InetSocketAddress(apNodeInterface.GetAddress (0), 9)
+    socketAddress.SetTos (tid<<5)
+
+
+    myClient = ns.applications.UdpClientHelper (socketAddress)
     myClient.SetAttribute ("MaxPackets", ns.core.UintegerValue (4294967295))
     myClient.SetAttribute ("Interval", ns.core.TimeValue (ns.core.Time (inter))) # packets/s
     myClient.SetAttribute ("PacketSize", ns.core.UintegerValue (payloadSize))
