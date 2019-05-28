@@ -13,15 +13,15 @@ import ns.flow_monitor
 def main(argv):
     cmd = ns.core.CommandLine ()
     cmd.simulationTime = 10 #seconds
-    cmd.distance = 0.0 #meters
+    cmd.distance = 5.0 #meters
     simulationTime = float(cmd.simulationTime)
     distance = float(cmd.distance)
 
     #Configuration arguments
     bandwidth = 40
-    mcs = 7
+    mcs = 4
     gi = True
-    expected_val= 82.2
+    expected_val= 25
 
     print "MCS's: \t Bandwidth: \t Troughput:\t\t  Delay:\t Lost packets:\tTransmited packets:"
     channel = ns.wifi.YansWifiChannelHelper.Default ()
@@ -119,7 +119,7 @@ def main(argv):
     flowmonitor = ns.flow_monitor.FlowMonitorHelper ()
     monitor = flowmonitor.InstallAll ()
 
-    monitor.SetAttribute ("StartTime", ns.core.TimeValue (ns.core.Seconds (5)))
+    monitor.SetAttribute ("StartTime", ns.core.TimeValue (ns.core.Seconds (1)))
     monitor.SetAttribute ("DelayBinWidth", ns.core.DoubleValue (0.001))
     monitor.SetAttribute ("JitterBinWidth", ns.core.DoubleValue (0.001))
     monitor.SetAttribute ("PacketSizeBinWidth", ns.core.DoubleValue (20))
@@ -130,7 +130,7 @@ def main(argv):
     ns.core.Simulator.Destroy ()
 
     monitor.CheckForLostPackets ()
-    classifier = ns.flow_monitor.Ipv4FlowClassifier ()
+    classifier = ns.flow_monitor.Ipv4FlowClassifier () #Tutaj do rozdzielenie ruchu.
     classifier = flowmonitor.GetClassifier ()
     stats = monitor.GetFlowStats ()
 
