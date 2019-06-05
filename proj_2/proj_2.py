@@ -23,7 +23,7 @@ def main(argv):
     gi = True
     expected_val= 25
 
-    print "MCS's: \t Bandwidth: \t Troughput:\t\t  Delay:\t Lost packets:\tTransmited packets:"
+    print "\tMCS's: \t Bandwidth:\t Troughput:\t   Delay:\t  Lost packets:\t  Transmited packets:\t Jitter:"
     channel = ns.wifi.YansWifiChannelHelper.Default ()
     phy = ns.wifi.YansWifiPhyHelper.Default ()
     wifi = ns.wifi.WifiHelper ()
@@ -69,6 +69,7 @@ def main(argv):
 
     positionAlloc.Add (ns.core.Vector3D (0.0, 0.0, 0.0))
     positionAlloc.Add (ns.core.Vector3D (distance, 0.0, 0.0))
+    positionAlloc.Add (ns.core.Vector3D (distance*2, 0.0, 0.0))
     mobility.SetPositionAllocator (positionAlloc)
 
     mobility.SetMobilityModel ("ns3::ConstantPositionMobilityModel")
@@ -139,15 +140,27 @@ def main(argv):
         p_tran = flow_stats.txPackets
         p_rec = flow_stats.rxPackets
         delay_sum = flow_stats.delaySum
+        jitter_sum = flow_stats.jitterSum
         delay = delay_sum / p_rec
+        jitter = jitter_sum / (p_rec-1)
         lost_packets = flow_stats.lostPackets
 
-    throughput = 0
-    # UDP
-    totalPacketsThrough = serverApp.Get (0).GetReceived ()
-    throughput = totalPacketsThrough * payloadSize * 8 / (simulationTime * 1000000.0)    # Mbit/s
+        throughput = 0
+        #totalPacketsThrough = serverApp.Get (0).GetReceived ()
+        totalPacketsThrough = p_rec
+        throughput = totalPacketsThrough * payloadSize * 8 / (simulationTime * 1000000.0)    # Mbit/s
 
-    print mcs,"\t",bandwidth,"MHz\t", throughput,"Mbit/s\t",delay,"\t\t",lost_packets,"\t\t ",p_tran
+        print "Sta",flow_id,"->",mcs,"\t  ",bandwidth,"MHz\t",throughput,"Mbit/s\t ",delay,"\t\t",lost_packets,"\t\t",p_tran,"\t\t",jitter
+        #print "FlowID:",flow_id,"Source Addr:",t.sourceAddress,"Destination Addr:",t.destinationAddress ##Debugowy wpis w celu identyfikacji ruchu
+    
+    #Stary sposob wyliczania, teraz uzywamy flowMonitora w calosci aby latwiej bylo oddzialac przeplywy
+
+    #throughput = 0
+    ## UDP
+    #totalPacketsThrough = serverApp.Get (0).GetReceived ()
+    #throughput = totalPacketsThrough * payloadSize * 8 / (simulationTime * 1000000.0)    # Mbit/s
+    
+    #print mcs,"\t  ",bandwidth,"MHz\t",throughput,"Mbit/s\t ",delay,"\t\t",lost_packets,"\t\t",p_tran,"\t\t",jitter
     return 0
 
 if __name__ == '__main__':
