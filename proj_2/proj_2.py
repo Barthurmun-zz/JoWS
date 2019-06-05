@@ -13,13 +13,13 @@ import ns.flow_monitor
 def main(argv):
     cmd = ns.core.CommandLine ()
     cmd.simulationTime = 10 #seconds
-    cmd.distance = 5.0 #meters
+    cmd.distance = 4 #meters
     simulationTime = float(cmd.simulationTime)
     distance = float(cmd.distance)
 
     #Configuration arguments
     bandwidth = 40
-    mcs = 4
+    mcs=4
     gi = True
     expected_val= 25
 
@@ -130,7 +130,7 @@ def main(argv):
     ns.core.Simulator.Destroy ()
 
     monitor.CheckForLostPackets ()
-    classifier = ns.flow_monitor.Ipv4FlowClassifier () #Tutaj do rozdzielenie ruchu.
+    classifier = ns.flow_monitor.Ipv4FlowClassifier ()
     classifier = flowmonitor.GetClassifier ()
     stats = monitor.GetFlowStats ()
 
