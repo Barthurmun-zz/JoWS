@@ -13,7 +13,12 @@ import ns.flow_monitor
 def main(argv):
     cmd = ns.core.CommandLine ()
     cmd.simulationTime = 10 #seconds
-    cmd.distance = 4 #meters
+    cmd.distance = 0 #meters
+
+    cmd.AddValue ("simulationTime", "Simulation time in seconds")
+    cmd.AddValue ("distance", "distance of the first sta from the AP")
+    cmd.Parse (sys.argv)
+    
     simulationTime = float(cmd.simulationTime)
     distance = float(cmd.distance)
 
@@ -67,9 +72,11 @@ def main(argv):
     mobility = ns.mobility.MobilityHelper ()
     positionAlloc = ns.mobility.ListPositionAllocator ()
 
+    distance_2 = distance * 2
+
     positionAlloc.Add (ns.core.Vector3D (0.0, 0.0, 0.0))
     positionAlloc.Add (ns.core.Vector3D (distance, 0.0, 0.0))
-    positionAlloc.Add (ns.core.Vector3D (distance*2, 0.0, 0.0))
+    positionAlloc.Add (ns.core.Vector3D (distance_2, 0.0, 0.0))
     mobility.SetPositionAllocator (positionAlloc)
 
     mobility.SetMobilityModel ("ns3::ConstantPositionMobilityModel")

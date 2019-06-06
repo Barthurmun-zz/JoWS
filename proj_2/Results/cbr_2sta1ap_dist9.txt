@@ -1,0 +1,33 @@
+	MCS's: 	 Bandwidth:	 Troughput:	   Delay:	  Lost packets:	  Transmited packets:	 Jitter:
+Sta 1 -> 4 	   40 MHz	24.87856 Mbit/s	  +7577245.0ns 		0 		22322 		+464624.0ns
+Sta 2 -> 4 	   40 MHz	24.97824 Mbit/s	  +666890.0ns 		0 		22322 		+367387.0ns
+	MCS's: 	 Bandwidth:	 Troughput:	   Delay:	  Lost packets:	  Transmited packets:	 Jitter:
+Sta 1 -> 4 	   40 MHz	24.87072 Mbit/s	  +5056759.0ns 		0 		22322 		+457332.0ns
+Sta 2 -> 4 	   40 MHz	24.99392 Mbit/s	  +671330.0ns 		0 		22322 		+366306.0ns
+	MCS's: 	 Bandwidth:	 Troughput:	   Delay:	  Lost packets:	  Transmited packets:	 Jitter:
+Sta 1 -> 4 	   40 MHz	24.864 Mbit/s	  +4293851.0ns 		0 		22322 		+432427.0ns
+Sta 2 -> 4 	   40 MHz	24.99168 Mbit/s	  +666966.0ns 		0 		22322 		+367364.0ns
+	MCS's: 	 Bandwidth:	 Troughput:	   Delay:	  Lost packets:	  Transmited packets:	 Jitter:
+Sta 1 -> 4 	   40 MHz	24.88304 Mbit/s	  +7543667.0ns 		0 		22322 		+468444.0ns
+Sta 2 -> 4 	   40 MHz	24.99168 Mbit/s	  +675194.0ns 		0 		22322 		+369165.0ns
+	MCS's: 	 Bandwidth:	 Troughput:	   Delay:	  Lost packets:	  Transmited packets:	 Jitter:
+Sta 1 -> 4 	   40 MHz	24.9088 Mbit/s	  +5746169.0ns 		0 		22322 		+461797.0ns
+Sta 2 -> 4 	   40 MHz	24.97488 Mbit/s	  +675840.0ns 		0 		22322 		+368519.0ns
+	MCS's: 	 Bandwidth:	 Troughput:	   Delay:	  Lost packets:	  Transmited packets:	 Jitter:
+Sta 1 -> 4 	   40 MHz	24.8752 Mbit/s	  +4654841.0ns 		0 		22322 		+460922.0ns
+Sta 2 -> 4 	   40 MHz	24.97712 Mbit/s	  +680723.0ns 		0 		22322 		+369202.0ns
+	MCS's: 	 Bandwidth:	 Troughput:	   Delay:	  Lost packets:	  Transmited packets:	 Jitter:
+Sta 1 -> 4 	   40 MHz	24.88752 Mbit/s	  +4779978.0ns 		0 		22322 		+460380.0ns
+Sta 2 -> 4 	   40 MHz	24.98608 Mbit/s	  +666838.0ns 		0 		22322 		+367796.0ns
+	MCS's: 	 Bandwidth:	 Troughput:	   Delay:	  Lost packets:	  Transmited packets:	 Jitter:
+Sta 1 -> 4 	   40 MHz	24.87296 Mbit/s	  +10374391.0ns 		0 		22322 		+494228.0ns
+Sta 2 -> 4 	   40 MHz	24.99952 Mbit/s	  +681223.0ns 		0 		22322 		+369311.0ns
+	MCS's: 	 Bandwidth:	 Troughput:	   Delay:	  Lost packets:	  Transmited packets:	 Jitter:
+Sta 1 -> 4 	   40 MHz	24.92112 Mbit/s	  +3642419.0ns 		0 		22322 		+434324.0ns
+Sta 2 -> 4 	   40 MHz	24.98048 Mbit/s	  +691656.0ns 		0 		22322 		+368645.0ns
+	MCS's: 	 Bandwidth:	 Troughput:	   Delay:	  Lost packets:	  Transmited packets:	 Jitter:
+Sta 1 -> 4 	   40 MHz	24.88976 Mbit/s	  +5781017.0ns 		0 		22322 		+450410.0ns
+Sta 2 -> 4 	   40 MHz	24.99392 Mbit/s	  +664055.0ns 		0 		22322 		+366104.0ns
+	MCS's: 	 Bandwidth:	 Troughput:	   Delay:	  Lost packets:	  Transmited packets:	 Jitter:
+Sta 1 -> 4 	   40 MHz	24.8864 Mbit/s	  +6316254.0ns 		0 		22322 		+465456.0ns
+Sta 2 -> 4 	   40 MHz	24.96704 Mbit/s	  +677504.0ns 		0 		22322 		+369552.0ns
