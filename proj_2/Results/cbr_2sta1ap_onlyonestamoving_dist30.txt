@@ -1,0 +1,82 @@
+	MCS's: 	 Bandwidth:	 Troughput:	   Delay:	  Lost packets:	  Transmited packets:	 Jitter:
+Sta 1 -> 4 	   40 MHz	24.9872 Mbit/s	  +2575628.0ns 		0 		22322 		+473446.0ns
+Sta 2 -> 4 	   40 MHz	14.48384 Mbit/s	  +709513500.0ns 		6127 		22322 		+1429938.0ns
+	MCS's: 	 Bandwidth:	 Troughput:	   Delay:	  Lost packets:	  Transmited packets:	 Jitter:
+Sta 1 -> 4 	   40 MHz	24.97264 Mbit/s	  +2612865.0ns 		0 		22322 		+474839.0ns
+Sta 2 -> 4 	   40 MHz	14.36624 Mbit/s	  +691123029.0ns 		6079 		22322 		+1415325.0ns
+	MCS's: 	 Bandwidth:	 Troughput:	   Delay:	  Lost packets:	  Transmited packets:	 Jitter:
+Sta 1 -> 4 	   40 MHz	24.95808 Mbit/s	  +2531613.0ns 		0 		22322 		+476694.0ns
+Sta 2 -> 4 	   40 MHz	14.53648 Mbit/s	  +704503511.0ns 		6108 		22322 		+1426693.0ns
+	MCS's: 	 Bandwidth:	 Troughput:	   Delay:	  Lost packets:	  Transmited packets:	 Jitter:
+Sta 1 -> 4 	   40 MHz	24.97264 Mbit/s	  +2632555.0ns 		0 		22322 		+473924.0ns
+Sta 2 -> 4 	   40 MHz	14.45248 Mbit/s	  +700422031.0ns 		6129 		22322 		+1418106.0ns
+	MCS's: 	 Bandwidth:	 Troughput:	   Delay:	  Lost packets:	  Transmited packets:	 Jitter:
+Sta 1 -> 4 	   40 MHz	24.99728 Mbit/s	  +2577256.0ns 		0 		22322 		+475022.0ns
+Sta 2 -> 4 	   40 MHz	14.56336 Mbit/s	  +707659598.0ns 		6067 		22322 		+1417805.0ns
+	MCS's: 	 Bandwidth:	 Troughput:	   Delay:	  Lost packets:	  Transmited packets:	 Jitter:
+Sta 1 -> 4 	   40 MHz	24.97712 Mbit/s	  +2645898.0ns 		0 		22322 		+471915.0ns
+Sta 2 -> 4 	   40 MHz	14.42 Mbit/s	  +710717001.0ns 		6163 		22322 		+1423401.0ns
+	MCS's: 	 Bandwidth:	 Troughput:	   Delay:	  Lost packets:	  Transmited packets:	 Jitter:
+Sta 1 -> 4 	   40 MHz	24.98832 Mbit/s	  +2603292.0ns 		0 		22322 		+473751.0ns
+Sta 2 -> 4 	   40 MHz	14.45248 Mbit/s	  +700831435.0ns 		6152 		22322 		+1426724.0ns
+	MCS's: 	 Bandwidth:	 Troughput:	   Delay:	  Lost packets:	  Transmited packets:	 Jitter:
+Sta 1 -> 4 	   40 MHz	24.96704 Mbit/s	  +2604392.0ns 		0 		22322 		+475135.0ns
+Sta 2 -> 4 	   40 MHz	14.39424 Mbit/s	  +705359502.0ns 		5976 		22322 		+1420597.0ns
+	MCS's: 	 Bandwidth:	 Troughput:	   Delay:	  Lost packets:	  Transmited packets:	 Jitter:
+Sta 1 -> 4 	   40 MHz	24.99952 Mbit/s	  +2601094.0ns 		0 		22322 		+475668.0ns
+Sta 2 -> 4 	   40 MHz	14.46592 Mbit/s	  +707027526.0ns 		6163 		22322 		+1424969.0ns
+	MCS's: 	 Bandwidth:	 Troughput:	   Delay:	  Lost packets:	  Transmited packets:	 Jitter:
+Sta 1 -> 4 	   40 MHz	24.9536 Mbit/s	  +2462839.0ns 		0 		22322 		+470921.0ns
+Sta 2 -> 4 	   40 MHz	13.99888 Mbit/s	  +721539076.0ns 		6538 		22322 		+1470517.0ns
+	MCS's: 	 Bandwidth:	 Troughput:	   Delay:	  Lost packets:	  Transmited packets:	 Jitter:
+Sta 1 -> 4 	   40 MHz	24.96368 Mbit/s	  +2617290.0ns 		0 		22322 		+474041.0ns
+Sta 2 -> 4 	   40 MHz	14.58688 Mbit/s	  +689177360.0ns 		5861 		22322 		+1403354.0ns
+	MCS's: 	 Bandwidth:	 Troughput:	   Delay:	  Lost packets:	  Transmited packets:	 Jitter:
+Sta 1 -> 4 	   40 MHz	24.9872 Mbit/s	  +2575628.0ns 		0 		22322 		+473446.0ns
+Sta 2 -> 4 	   40 MHz	14.48384 Mbit/s	  +709513500.0ns 		6127 		22322 		+1429938.0ns
+Traceback (most recent call last):
+  File "proj_2.py", line 6, in <module>
+    import ns.network
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "proj_2.py", line 5, in <module>
+    import ns.core
+  File "/home/osboxes/ns-allinone-3.29/ns-3.29/build/bindings/python/ns/core.py", line 5, in <module>
+    from . import _core
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "proj_2.py", line 6, in <module>
+    import ns.network
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "proj_2.py", line 6, in <module>
+    import ns.network
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "proj_2.py", line 6, in <module>
+    import ns.network
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "proj_2.py", line 6, in <module>
+    import ns.network
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "proj_2.py", line 6, in <module>
+    import ns.network
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "proj_2.py", line 6, in <module>
+    import ns.network
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "proj_2.py", line 5, in <module>
+    import ns.core
+  File "/home/osboxes/ns-allinone-3.29/ns-3.29/build/bindings/python/ns/core.py", line 5, in <module>
+    from . import _core
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "proj_2.py", line 5, in <module>
+    import ns.core
+  File "/home/osboxes/ns-allinone-3.29/ns-3.29/build/bindings/python/ns/core.py", line 5, in <module>
+    from . import _core
+KeyboardInterrupt

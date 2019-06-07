@@ -72,11 +72,11 @@ def main(argv):
     mobility = ns.mobility.MobilityHelper ()
     positionAlloc = ns.mobility.ListPositionAllocator ()
 
-    distance_2 = distance * 2
+    #distance_2 = distance * 2
 
     positionAlloc.Add (ns.core.Vector3D (0.0, 0.0, 0.0))
+    positionAlloc.Add (ns.core.Vector3D (0.0, 0.0, 0.0))
     positionAlloc.Add (ns.core.Vector3D (distance, 0.0, 0.0))
-    positionAlloc.Add (ns.core.Vector3D (distance_2, 0.0, 0.0))
     mobility.SetPositionAllocator (positionAlloc)
 
     mobility.SetMobilityModel ("ns3::ConstantPositionMobilityModel")
