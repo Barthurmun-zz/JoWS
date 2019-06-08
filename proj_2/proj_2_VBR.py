@@ -1,4 +1,4 @@
-#Author: Jakub Bryl
+#Author: Jakub Bryl & Marzena Skolucka
 #Based on NS3 examples, official documentation 
 #Written in python thanks to examples provided by: https://github.com/mohittahiliani/ns-3-python-examples
 
@@ -72,11 +72,11 @@ def main(argv):
     mobility = ns.mobility.MobilityHelper ()
     positionAlloc = ns.mobility.ListPositionAllocator ()
 
-    distance_2 = distance * 2
+    #distance_2 = distance * 2
 
     positionAlloc.Add (ns.core.Vector3D (0.0, 0.0, 0.0))
+    positionAlloc.Add (ns.core.Vector3D (0.0, 0.0, 0.0))
     positionAlloc.Add (ns.core.Vector3D (distance, 0.0, 0.0))
-    positionAlloc.Add (ns.core.Vector3D (distance_2, 0.0, 0.0))
     mobility.SetPositionAllocator (positionAlloc)
 
     mobility.SetMobilityModel ("ns3::ConstantPositionMobilityModel")
@@ -117,7 +117,7 @@ def main(argv):
     myClient = ns.applications.OnOffHelper ("ns3::UdpSocketFactory", socketAddress)
     myClient.SetAttribute ("OnTime", ns.core.StringValue ("ns3::ExponentialRandomVariable[Mean=0.976]"))
     myClient.SetAttribute("OffTime", ns.core.StringValue ("ns3::ExponentialRandomVariable[Mean=0.001]"))
-    myClient.SetAttribute ("DataRate", ns.network.DataRateValue (ns.network.DataRate (25000000))) # bit/s
+    myClient.SetAttribute ("DataRate", ns.network.DataRateValue (ns.network.DataRate (expected_val*1000000))) # bit/s
     myClient.SetAttribute ("PacketSize", ns.core.UintegerValue (payloadSize))
 
     clientApp = myClient.Install (ns.network.NodeContainer (wifiStaNode))
