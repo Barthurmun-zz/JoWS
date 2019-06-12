@@ -1,0 +1,70 @@
+Sta 1 -> 4 	   40 MHz	24.9872 Mbit/s	  +2575628.0 		0 		22322 		+473446.0
+Sta 2 -> 4 	   40 MHz	14.48384 Mbit/s	  +709513500.0 		6127 		22322 		+1429938.0
+Sta 1 -> 4 	   40 MHz	24.97264 Mbit/s	  +2612865.0 		0 		22322 		+474839.0
+Sta 2 -> 4 	   40 MHz	14.36624 Mbit/s	  +691123029.0 		6079 		22322 		+1415325.0
+Sta 1 -> 4 	   40 MHz	24.95808 Mbit/s	  +2531613.0 		0 		22322 		+476694.0
+Sta 2 -> 4 	   40 MHz	14.53648 Mbit/s	  +704503511.0 		6108 		22322 		+1426693.0
+Sta 1 -> 4 	   40 MHz	24.97264 Mbit/s	  +2632555.0 		0 		22322 		+473924.0
+Sta 2 -> 4 	   40 MHz	14.45248 Mbit/s	  +700422031.0 		6129 		22322 		+1418106.0
+Sta 1 -> 4 	   40 MHz	24.99728 Mbit/s	  +2577256.0 		0 		22322 		+475022.0
+Sta 2 -> 4 	   40 MHz	14.56336 Mbit/s	  +707659598.0 		6067 		22322 		+1417805.0
+Sta 1 -> 4 	   40 MHz	24.97712 Mbit/s	  +2645898.0 		0 		22322 		+471915.0
+Sta 2 -> 4 	   40 MHz	14.42 Mbit/s	  +710717001.0 		6163 		22322 		+1423401.0
+Sta 1 -> 4 	   40 MHz	24.98832 Mbit/s	  +2603292.0 		0 		22322 		+473751.0
+Sta 2 -> 4 	   40 MHz	14.45248 Mbit/s	  +700831435.0 		6152 		22322 		+1426724.0
+Sta 1 -> 4 	   40 MHz	24.96704 Mbit/s	  +2604392.0 		0 		22322 		+475135.0
+Sta 2 -> 4 	   40 MHz	14.39424 Mbit/s	  +705359502.0 		5976 		22322 		+1420597.0
+Sta 1 -> 4 	   40 MHz	24.99952 Mbit/s	  +2601094.0 		0 		22322 		+475668.0
+Sta 2 -> 4 	   40 MHz	14.46592 Mbit/s	  +707027526.0 		6163 		22322 		+1424969.0
+Sta 1 -> 4 	   40 MHz	24.9536 Mbit/s	  +2462839.0 		0 		22322 		+470921.0
+Sta 2 -> 4 	   40 MHz	13.99888 Mbit/s	  +721539076.0 		6538 		22322 		+1470517.0
+Sta 1 -> 4 	   40 MHz	24.96368 Mbit/s	  +2617290.0 		0 		22322 		+474041.0
+Sta 2 -> 4 	   40 MHz	14.58688 Mbit/s	  +689177360.0 		5861 		22322 		+1403354.0
+Sta 1 -> 4 	   40 MHz	24.9872 Mbit/s	  +2575628.0 		0 		22322 		+473446.0
+Sta 2 -> 4 	   40 MHz	14.48384 Mbit/s	  +709513500.0 		6127 		22322 		+1429938.0
+Traceback (most recent call last):
+  File "proj_2.py", line 6, in <module>
+    import .network
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "proj_2.py", line 5, in <module>
+    import .core
+  File "/home/osboxes/-allinone-3.29/-3.29/build/bindings/python//core.py", line 5, in <module>
+    from . import _core
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "proj_2.py", line 6, in <module>
+    import .network
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "proj_2.py", line 6, in <module>
+    import .network
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "proj_2.py", line 6, in <module>
+    import .network
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "proj_2.py", line 6, in <module>
+    import .network
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "proj_2.py", line 6, in <module>
+    import .network
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "proj_2.py", line 6, in <module>
+    import .network
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "proj_2.py", line 5, in <module>
+    import .core
+  File "/home/osboxes/-allinone-3.29/-3.29/build/bindings/python//core.py", line 5, in <module>
+    from . import _core
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "proj_2.py", line 5, in <module>
+    import .core
+  File "/home/osboxes/-allinone-3.29/-3.29/build/bindings/python//core.py", line 5, in <module>
+    from . import _core
+KeyboardInterrupt
