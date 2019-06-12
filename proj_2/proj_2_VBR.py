@@ -110,7 +110,7 @@ def main(argv):
     
     tid=5
 
-    socketAddress = ns.network.InetSocketAddress(apNodeInterface.GetAddress (0), 9)
+    socketAddress = ns.network.InetSocketAddress(staNodeInterface.GetAddress (1), 9)
     socketAddress.SetTos (tid<<5)
 
 

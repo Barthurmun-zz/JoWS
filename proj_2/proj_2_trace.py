@@ -72,7 +72,7 @@ def main(argv):
     mobility = ns.mobility.MobilityHelper ()
     positionAlloc = ns.mobility.ListPositionAllocator ()
 
-    #distance_2 = distance * 2
+    distance_2 = distance * 2
 
     positionAlloc.Add (ns.core.Vector3D (0.0, 0.0, 0.0))
     positionAlloc.Add (ns.core.Vector3D (0.0, 0.0, 0.0))
@@ -109,16 +109,16 @@ def main(argv):
     
     tid=5
 
-    socketAddress = ns.network.InetSocketAddress(staNodeInterface.GetAddress (1), 9)
+    socketAddress = ns.network.InetSocketAddress(apNodeInterface.GetAddress (0), 9)
     socketAddress.SetTos (tid<<5)
 
+    # Create one UDPTRaceClient application
+    #MaxPacketSize =1400   
 
-    myClient = ns.applications.UdpClientHelper (socketAddress)
-    myClient.SetAttribute ("MaxPackets", ns.core.UintegerValue (4294967295))
-    myClient.SetAttribute ("Interval", ns.core.TimeValue (ns.core.Time (inter))) # packets/s
-    myClient.SetAttribute ("PacketSize", ns.core.UintegerValue (payloadSize))
+    trace_client = ns.applications.UdpTraceClientHelper (socketAddress, 9, "Verbose_Jurassic_64_2.txt")
+    trace_client.SetAttribute ("MaxPacketSize", ns.core.UintegerValue (ns.core.UintegerValue (payloadSize)))
 
-    clientApp = myClient.Install (ns.network.NodeContainer (wifiStaNode))
+    clientApp = trace_client.Install (ns.network.NodeContainer (wifiStaNode))
     clientApp.Start (ns.core.Seconds (1.0))
     clientApp.Stop (ns.core.Seconds (simulationTime + 1))
 
@@ -159,7 +159,7 @@ def main(argv):
 
         print "Sta",flow_id,"->",mcs,"\t  ",bandwidth,"MHz\t",throughput,"Mbit/s\t ",delay,"\t\t",lost_packets,"\t\t",p_tran,"\t\t",jitter
         #print "FlowID:",flow_id,"Source Addr:",t.sourceAddress,"Destination Addr:",t.destinationAddress ##Debugowy wpis w celu identyfikacji ruchu
-    
+        
     #Stary sposob wyliczania, teraz uzywamy flowMonitora w calosci aby latwiej bylo oddzialac przeplywy
 
     #throughput = 0
@@ -171,5 +171,8 @@ def main(argv):
     return 0
 
 if __name__ == '__main__':
+
     import sys
+
+ 
 sys.exit (main (sys.argv))
